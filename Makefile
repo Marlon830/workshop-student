@@ -35,8 +35,10 @@ LDFLAGS			= -g -relocatable
 
 # Sources
 ASM_SRC			= $(ENTRY)/entry_point.asm
-C_SRC			= $(ENTRY)/kernel_entry.c \
-				  $(ENTRY)/vga/clear_screen.c \
+
+C_SRC			= 	$(ENTRY)/kernel_entry.c \
+          $(ENTRY)/vga/clear_screen.c \
+					$(ENTRY)/vga/mini_printf.c
 
 # Objects
 C_OBJ			= $(C_SRC:.c=.o)

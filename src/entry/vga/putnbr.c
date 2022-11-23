@@ -4,6 +4,7 @@
 ** File description:
 ** my_putnbr.c
 */
+#include "vga.h"
 
 int putnbr(int x, int y, int nb)
 {
@@ -12,8 +13,8 @@ int putnbr(int x, int y, int nb)
         nb = -nb;
     }
     if (nb > 9) {
-        put_nbr(x, y, nb / 10);
-        put_nbr(x, y, nb % 10);
+        putnbr(x, y, nb / 10);
+        putnbr(x, y, nb % 10);
     } else {
         putchar(x, y, nb + '0');
     }

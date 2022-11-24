@@ -1,30 +1,26 @@
 #include <stdarg.h>
 #include "vga.h"
 
-void mini_printf(int x, int y, char *str, ...)
+int mini_printf(int x, int y, char background, char text, char *str, ...)
 {
     va_list ap;
     va_start(ap, str);
-    int i = 0;
     char c;
-    //char *str;
     int d;
-
-    while (str[i] != '\0') {
+    for (int i = 0; str[i] != 0; i++) {
         if (str[i] == 'c') {
             c = va_arg(ap, int);
-            putchar(x, y, c);
-            x++;
+            x += putchar(x, y, c, background, text);
         }
-        //if (str[i] == 's') {
-            //str = va_arg(ap, char *);
-            //putstr(x, y, str);
-        //}
+        if (str[i] == 's') {
+            char *string = va_arg(ap, char *);
+            x += putstr(string, x, y, background, text);
+
+        }
         if (str[i] == 'i') {
             d = va_arg(ap, int);
-            putnbr(x, y, d);
-            x++;
+            x = putnbr(x, y, d, background, text);
         }
-        i++;
     }
+    return x;
 }

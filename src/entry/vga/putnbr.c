@@ -6,19 +6,18 @@
 */
 #include "vga.h"
 
-int putnbr(int x, int y, int nb)
+int putnbr(int x, int y, int nb, char background, char text)
 {
     if (nb < 0){
         nb = nb * -1;
-        putchar(x, y, '-');
-        x++;
+        x += putchar(x, y, '-', background, text);
     }
     if (nb < 10){
-        putchar(x, y, '0' + nb);
-        return x + 1;
+        x += putchar(x, y, '0' + nb, background, text);
+        return x;
     } else{
-        x = putnbr(x, y, (nb - (nb % 10)) / 10);
-        putchar(x, y, '0' + (nb % 10));
-        return x + 1;
+        x = putnbr(x, y, (nb - (nb % 10)) / 10, background, text);
+        x += putchar(x, y, '0' + (nb % 10), background, text);
+        return x;
     }
 }

@@ -41,7 +41,8 @@ C_SRC			= 	$(ENTRY)/kernel_entry.c \
 					$(ENTRY)/vga/mini_printf.c \
           			$(ENTRY)/vga/putchar.c \
           			$(ENTRY)/vga/colors.c \
-					$(ENTRY)/vga/putnbr.c
+					$(ENTRY)/vga/putnbr.c \
+					$(ENTRY)/vga/putstr.c \
 
 # Objects
 C_OBJ			= $(C_SRC:.c=.o)

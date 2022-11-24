@@ -8,15 +8,17 @@
 
 int putnbr(int x, int y, int nb)
 {
-    if (nb < 0) {
+    if (nb < 0){
+        nb = nb * -1;
         putchar(x, y, '-');
-        nb = -nb;
+        x++;
     }
-    if (nb > 9) {
-        putnbr(x, y, nb / 10);
-        putnbr(x, y, nb % 10);
-    } else {
-        putchar(x, y, nb + '0');
+    if (nb < 10){
+        putchar(x, y, '0' + nb);
+        return x + 1;
+    } else{
+        x = putnbr(x, y, (nb - (nb % 10)) / 10);
+        putchar(x, y, '0' + (nb % 10));
+        return x + 1;
     }
-    return 0;
 }
